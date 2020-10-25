@@ -8,7 +8,7 @@
 		</style>
 
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<title>3D Sierpinski Gasket</title>
+		<title>Koch Curve Generator</title>
 
 		<script id="vertex-shader" type="x-shader/x-vertex">
 			attribute vec4 vPosition;
@@ -58,10 +58,6 @@
 				<div style="margin: 20px;">
 					<h3>Shape Options</h3>
 					<button id="clearShapeButtonID" style="width: 120px; height: 30px;">Clear Shape</button>
-					<div style="margin-top: 5px;">
-						<input type="color" id="curveColor" name="head" value="#ffd500">
-						<label for="head">Fill Shape</label>
-					</div>
 				</div>
 				<hr>
 				<div class="browser" style="margin: 20px;">
@@ -79,7 +75,7 @@
 				<div style="margin: 20px;">
 			  		<h3>Koch Curve Customization</h3>
 			  		<div>
-						<input type="range" id="kochSliderID" list="tickmarks" name="rangeInput" step="1" min="0" max="10" value="3"/>
+						<input type="range" id="kochSliderID" list="tickmarks" name="rangeInput" step="1" min="0" max="7" value="3"/>
 						<datalist id="tickmarks">
 							<option value="0"></option>
 							<option value="1"></option>
@@ -89,9 +85,6 @@
 							<option value="5"></option>
 							<option value="6"></option>
 							<option value="7"></option>
-							<option value="8"></option>
-							<option value="9"></option>
-							<option value="10"></option>
 						</datalist>
 						<label id="kochLabelID" for="body" style="font-size: 30px; margin-left: 5px;">3</label>
 						<button id="kochcurveApplyButtonID" style="width: 120px; height: 30px; margin-left: 5px;">Apply rule</button>
@@ -99,15 +92,40 @@
 				</div>
 				<hr>
 				<div style = "margin: 20px;">
-			  		<h3>Saving/Loading</h3>
+			  		<h3>Save/Load</h3>
 					<div>
 						<label for="myfile">Select a file to load:</label>
 						<input  style="width: 120px; height: 30px;" type="file" id="uploadFileID" name="myfile">
 						<br>	
 						<label for="myfile">Save as:</label>
-						<input style="width: 120px; height: 20px; font-size: 20px;" id="saveDataTextID" type="text" value="my_shape"/>
+						<input style="width: 120px; height: 20px; font-size: 15px;" id="saveDataTextID" type="text" value="my_shape"/>
 						<button style="width: 120px; height: 30px;" type="button" id="downloadFileID" name="myfile">Download Shape</button>
 					</div>
+				</div>
+				<hr>
+				<div style = "margin: 20px;">
+					<h3>How to Use</h3>
+					<p>
+						You can use this simple application to observe Koch curves.
+						<br>
+						The application supports up to 7 iterations. 
+						<br>
+						To support more iterations, caching and asynchronous operations must be included.
+					</p>
+					<ul>
+						<li>Click on the canvas to draw a convex shape.</li>
+						<li>When the shape is drawn, you can no longer manipulate it.</li>
+						<li>If you would like to draw another shape, clear it.</li>
+						<li>If you do not want to lose the shape, save it before clearing.</li>
+						<li>Set the number of iterations after the shape is drawn.</li>
+						<li>Click on the apply rule button.</li>
+						<li>At any time you can change background and curve color by clicking on the color icon.</li>
+						<li>You can load your favorite saved shapes from your device.</li>
+					</ul>
+				</div>
+				<hr>
+				<div style = "margin: 20px;">
+					<p>Made by Cevat Aykan Sevinç, 21703201</p>
 				</div>
 				<hr>
 		</div>

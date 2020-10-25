@@ -41,9 +41,7 @@ function RGBtoHexColor( colorVec)
 
 function changeBackGroundColor(event)
 {
-	// Change background color
-	var hexColor = event.target.value;
-	bgColor = hexToRGBVector( hexColor);
+	bgColor = hexToRGBVector( event.target.value);
 	render();
 };
 
@@ -153,7 +151,6 @@ window.onload = function init()
 	// Configure shape options
 	let shapeClearButton = document.getElementById( "clearShapeButtonID");
 	shapeClearButton.addEventListener( "click", handleClearShapeButtonClick, false);
-
 
 	// Click on the canvas to add a point
 	canvas.onclick = function (event) {

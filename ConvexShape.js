@@ -52,29 +52,6 @@ ConvexShape.prototype.clear = function ()
 	this.isRuleApplied = false;
 };
 
-ConvexShape.prototype.saveJSON = function (filename) 
-{
-	const a = document.createElement('a');
-
-	// var jsonData = 
-	// {
-	// 	points: this.points,
-	// 	kochPoints: this.kochPoints,
-
-	// 	isRuleApplied: this.isRuleApplied,
-
-	// };
-
-	let jsonData = JSON.stringify( this, null, 4);
-  	const file = new Blob([ jsonData], {type: "text/plain"});
-  
-  	a.href= URL.createObjectURL( file);
-  	a.download = filename;
-  	a.click();
-
-	URL.revokeObjectURL(a.href);
-};
-
 ConvexShape.prototype.loadData = function ( shapeData) 
 {
 	this.points = shapeData.points;
