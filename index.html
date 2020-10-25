@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			canvas {
+				border: 3px solid black;
+			}
+		</style>
+
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>3D Sierpinski Gasket</title>
+
+		<script id="vertex-shader" type="x-shader/x-vertex">
+			attribute vec4 vPosition;
+			attribute vec4 vColor;
+
+			varying vec4 color;
+			uniform vec4 u_curveColor;
+
+			void
+			main()
+			{
+			    gl_Position = vPosition;
+			    color = u_curveColor;
+			}
+		</script>
+
+		<script id="fragment-shader" type="x-shader/x-fragment">
+			precision mediump float;
+
+			varying vec4 color;
+
+			void
+			main()
+			{
+			    gl_FragColor = color;
+			}
+		</script>
+
+		<script type="text/javascript" src="Common/webgl-utils.js"></script>
+		<script type="text/javascript" src="Common/initShaders.js"></script>
+		<script type="text/javascript" src="Common/MV.js"></script>
+		<script type="text/javascript" src="KochAlgorithmSet.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="ConvexShape.js"></script>
+		<script type="text/javascript" src="ProgramData.js"></script>
+	</head>
+
+	<body>
+		<div style="float: left;">
+			<canvas id="gl-canvas" width="1024" height="1024">
+				Oops ... your browser doesn't support the HTML5 canvas element
+			</canvas>
+		</div>
+		<div class="all-browsers" style="float: left; margin: 20px;">
+			<h1>Interaction Menu</h1>
+				<hr>
+				<div style="margin: 20px;">
+					<h3>Shape Options</h3>
+					<button id="clearShapeButtonID" style="width: 120px; height: 30px;">Clear Shape</button>
+					<div style="margin-top: 5px;">
+						<input type="color" id="curveColor" name="head" value="#ffd500">
+						<label for="head">Fill Shape</label>
+					</div>
+				</div>
+				<hr>
+				<div class="browser" style="margin: 20px;">
+			  		<h3>Color</h3>
+			  		<div>
+						<input type="color" id="curveColorPickerID" name="head" value="#FFFFFF">
+						<label for="head">Curve Color</label>
+					</div>
+					<div>
+						<input type="color" id="backgroundColorID" name="body" value="#1954FF">
+						<label for="body">Background color</label>
+					</div>	
+				</div>
+				<hr>
+				<div style="margin: 20px;">
+			  		<h3>Koch Curve Customization</h3>
+			  		<div>
+						<input type="range" id="kochSliderID" list="tickmarks" name="rangeInput" step="1" min="0" max="10" value="3"/>
+						<datalist id="tickmarks">
+							<option value="0"></option>
+							<option value="1"></option>
+							<option value="2"></option>
+							<option value="3"></option>
+							<option value="4"></option>
+							<option value="5"></option>
+							<option value="6"></option>
+							<option value="7"></option>
+							<option value="8"></option>
+							<option value="9"></option>
+							<option value="10"></option>
+						</datalist>
+						<label id="kochLabelID" for="body" style="font-size: 30px; margin-left: 5px;">3</label>
+						<button id="kochcurveApplyButtonID" style="width: 120px; height: 30px; margin-left: 5px;">Apply rule</button>
+					</div>
+				</div>
+				<hr>
+				<div style = "margin: 20px;">
+			  		<h3>Saving/Loading</h3>
+					<div>
+						<label for="myfile">Select a file to load:</label>
+						<input  style="width: 120px; height: 30px;" type="file" id="uploadFileID" name="myfile">
+						<br>	
+						<label for="myfile">Save as:</label>
+						<input style="width: 120px; height: 20px; font-size: 20px;" id="saveDataTextID" type="text" value="my_shape"/>
+						<button style="width: 120px; height: 30px;" type="button" id="downloadFileID" name="myfile">Download Shape</button>
+					</div>
+				</div>
+				<hr>
+		</div>
+
+		<script id = "slider-adjuster">
+			const slider = document.getElementById( "kochSliderID");
+			slider.addEventListener( "input", (event) => 
+			{ 
+				let sliderValue = event.srcElement.value; 
+				document.getElementById( "kochLabelID").innerHTML = sliderValue;
+			}, false);
+		</script>
+	</body>
+</html>
